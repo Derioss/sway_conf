@@ -1,0 +1,8 @@
+set $lock swaylock -i /home/fmaury/.config/sway/screen/swaylock.jpg
+exec swayidle -w \
+    timeout 600 $lock \
+    timeout 570 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep $lock
+set $lockman exec bash ~/.config/sway/conf.d/script/lock.sh
+bindsym  --no-warn $mod+l exec $lockman

@@ -1,0 +1,4 @@
+# Take a Screenshot with the region select
+# prerequisite slurp sway wl-clipboard
+#bindsym $mod+p exec grim -t jpeg -g "$(slurp -d)" - | wl-copy -t image/png
+bindsym $mod+p exec IMG=~/Images/$(date +%Y-%m-%d_%H-%m-%s).png && grim -g "$(slurp)" $IMG && wl-copy < $IMG
