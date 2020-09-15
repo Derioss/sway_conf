@@ -1,0 +1,3 @@
+#sudo apt install mako-notifier
+#https://github.com/emersion/mako
+exec mako
