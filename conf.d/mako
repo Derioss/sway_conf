@@ -1,3 +1,6 @@
 #sudo apt install mako-notifier
 #https://github.com/emersion/mako
+#need remove apparmor mako conf
+#apt install apparmor-utils
+#aa-disable /etc/apparmor.d/fr.emersion.Mako
 exec mako
