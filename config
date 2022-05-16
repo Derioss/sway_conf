@@ -172,7 +172,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
-    bindsym $mod+t exec 'swaync-client -t'
+    bindsym $mod+t exec swaync-client -t
 #
 # Resizing containers:
 #
