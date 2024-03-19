@@ -1,0 +1,88 @@
+[color]
+    ui = true
+
+[alias]
+    st             = status -s
+    co             = checkout
+    ci             = commit
+    br             = branch -a -v
+    force          = push --force-with-lease
+    rpo            = remote prune origin
+
+    pretty-log     = log --oneline --date-order --graph --all --decorate
+    t              = log --oneline --graph --all --decorate --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' -20
+    standup        = log --since yesterday --oneline --author frederic.maury@i-run.fr
+    lb             = log --oneline --decorate --graph origin/master.. 
+    lg             = log --graph --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    lgs            = log --graph --decorate --pretty=format:\"%ad [%cn] %h> %n %Cgreen%d%Creset %s %n\" --stat
+    lastchanges    = log --pretty=oneline --abbrev-commit --graph ORIG_HEAD.. --stat --no-merges
+    clg            = log develop..master --oneline --all --no-merges develop --pretty=tformat:'* `%h`: %s'
+    last           = log -1 --stat
+
+    diff           = diff -p --stat
+    ldiff          = diff HEAD^ HEAD
+    hdiff          = diff HEAD
+    tags           = tag -l
+    ltag           = describe --tags --abbrev=0
+    undo           = reset --soft HEAD^
+    who            = shortlog -sne
+    pick           = cherry-pick
+
+    aliases        = !git config --list | grep 'alias\\.' | awk -F'[.=]' '{printf(\"%-15s %s\\n\",$2,$3)}' | sort
+
+    # keep a file from changing, see `unskip`, `skipped`
+    skip           = update-index --skip-worktree
+    skipped        = ! "gitskipped() { git ls-files -v | grep ^[sS] ; }; gitskipped"
+    unskip         = update-index --no-skip-worktree
+
+    # Which files are receiving the most "love"
+    churn          = !git log --all -M -C --name-status --oneline | grep -E '^[A-Z]\\b' | awk '{print $2}' | sort | uniq -c | sort -rn | head
+
+    # View the log and diff for a commit (previous if no SHA1 provided)
+    details        = log -n1 -p --format=fuller
+
+    # Update all submodules
+    subup          = submodule update --init
+
+    # Trim repo by prune all unreferenced commit
+    trim           = !git reflog expire --expire=now --all && git gc --prune=now
+
+    # in which commit was a file introduced
+    introduced     = log --diff-filter=A --
+    
+[core]
+    editor = vim
+       autocrlf = input
+       safecrlf = true
+    compression = 9
+
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+
+[user]
+    email = 
+    name = 
+        signingkey =  
+    
+[push]
+     default = tracking
+
+[pull]
+    rebase = true
+
+[rebase]
+    autoStash = true
+
+[rerere]
+    enabled = true
+
+[include]
+    path = ~/.gitconfig.local
+
+
+[gpg]
+        program = gpg2
+[commit]
+        gpgsign = false
